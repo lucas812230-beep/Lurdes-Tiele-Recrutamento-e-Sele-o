@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lurdes Tiele — Recrutamento e Seleção</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --petrol: #163d3f;
+    --petrol-deep: #0e2728;
+    --gold: #c99a3d;
+    --cream: #f6f3ec;
+    --ink: #1c211f;
+    --line: rgba(28,33,31,0.14);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: inherit; margin: 0; padding: 0; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; line-height: 1.08; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  header {
+    position: sticky; top: env(safe-area-inset-top, 0px);
+    background: var(--cream); z-index: 10;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; max-width: 1080px; margin: 0 auto; }
+  .brand { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.15rem; color: var(--petrol-deep); }
+  .brand span { color: var(--gold); }
+  nav.links { display: flex; gap: 28px; font-size: 0.92rem; }
+  nav.links a { color: var(--ink); text-decoration: none; }
+  nav.links a:hover, nav.links a:focus-visible { color: var(--petrol); }
+  .btn {
+    background: var(--petrol); color: #fff; border: none; padding: 11px 22px;
+    border-radius: 3px; font-size: 0.92rem; font-family: 'Inter', sans-serif; cursor: pointer;
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover, .btn:focus-visible { background: var(--petrol-deep); }
+  .btn:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .hero { padding: 88px 0 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: end; }
+  .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); max-width: 11ch; color: var(--petrol-deep); }
+  .hero p.lede { margin-top: 22px; font-size: 1.08rem; max-width: 46ch; color: #40473f; }
+  .hero .actions { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-ghost {
+    border: 1px solid var(--petrol); color: var(--petrol); padding: 11px 22px; border-radius: 3px;
+    text-decoration: none; font-size: 0.92rem;
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible { background: rgba(22,61,63,0.06); }
+
+  .stat-card {
+    background: var(--petrol); color: #fff; padding: 30px 26px; border-radius: 4px;
+    align-self: stretch; display: flex; flex-direction: column; justify-content: center;
+  }
+  .stat-card .num { font-family: 'Fraunces', serif; font-size: 2.6rem; color: var(--gold); }
+  .stat-card .label { font-size: 0.92rem; margin-top: 6px; color: #e6e2d6; max-width: 22ch; }
+
+  .split { padding: 64px 0; border-top: 1px solid var(--line); }
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .split-col { padding: 40px; }
+  .split-col:first-child { border-right: 1px solid var(--line); }
+  .split-col h2 { font-size: 1.5rem; color: var(--petrol-deep); }
+  .split-col p { margin-top: 14px; color: #40473f; max-width: 40ch; }
+  .split-col ul { margin-top: 20px; padding-left: 0; list-style: none; }
+  .split-col li { padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.95rem; }
+  .split-col li:first-child { border-top: none; }
+  .split-col .btn-ghost { margin-top: 24px; }
+
+  .about { padding: 64px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
+  .about h2 { font-size: 1.5rem; color: var(--petrol-deep); }
+  .about p { color: #40473f; max-width: 52ch; }
+  .about p + p { margin-top: 14px; }
+
+  .pacotes-intro { padding: 64px 0 8px; border-top: 1px solid var(--line); }
+  .pacotes-intro h2 { font-size: 1.6rem; color: var(--petrol-deep); max-width: 20ch; }
+  .pacotes-intro p { margin-top: 14px; max-width: 52ch; color: #40473f; }
+  .plans { padding: 32px 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .plan { border: 1px solid var(--line); border-radius: 4px; padding: 30px 24px; background: #fff; display: flex; flex-direction: column; }
+  .plan.destaque { background: var(--petrol); color: #fff; border-color: var(--petrol); }
+  .plan .tag { font-size: 0.8rem; color: var(--gold); font-weight: 600; }
+  .plan h3 { font-size: 1.25rem; margin-top: 8px; color: var(--petrol-deep); }
+  .plan.destaque h3 { color: #fff; }
+  .plan .preco { font-family: 'Fraunces', serif; font-size: 1.7rem; margin-top: 12px; }
+  .plan .preco small { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 400; display: block; color: #6a7168; margin-top: 4px; }
+  .plan.destaque .preco small { color: #d8e0d6; }
+  .plan p.desc { margin-top: 10px; font-size: 0.9rem; color: #40473f; }
+  .plan.destaque p.desc { color: #e6e2d6; }
+  .plan ul { margin-top: 18px; list-style: none; flex-grow: 1; }
+  .plan li { padding: 7px 0; border-top: 1px solid var(--line); font-size: 0.88rem; }
+  .plan.destaque li { border-top: 1px solid rgba(255,255,255,0.16); }
+  .plan li:first-child { border-top: none; }
+  .plan .btn-ghost { margin-top: 22px; text-align: center; }
+  .plan.destaque .btn-ghost { border-color: #fff; color: #fff; }
+  .plan.destaque .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+  .nota-pacotes { padding: 6px 0 40px; }
+  .nota-pacotes p { max-width: 60ch; font-size: 0.86rem; color: #5a6058; }
+  .comparativo { padding: 8px 0 60px; }
+  .comparativo h3 { font-size: 1.2rem; color: var(--petrol-deep); margin-bottom: 18px; }
+  .comparativo table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .comparativo th, .comparativo td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); }
+  .comparativo th { font-family: 'Fraunces', serif; font-weight: 600; color: var(--petrol-deep); }
+  .comparativo td.check { color: var(--petrol); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 40px; }
+  .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 0.88rem; color: #5a6058; }
+
+  @media (max-width: 720px) {
+    nav.links { display: none; }
+    .hero-grid, .split-grid, .about, .plans { grid-template-columns: 1fr; }
+    .split-col:first-child { border-right: none; border-bottom: 1px solid var(--line); }
+    .comparativo table { display: block; overflow-x: auto; white-space: nowrap; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">Lurdes Tiele <span>·</span> Recrutamento e Seleção</div>
+    <nav class="links">
+      <a href="#empresas">Para empresas</a>
+      <a href="#profissionais">Para profissionais</a>
+      <a href="#pacotes">Pacotes</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn" href="https://wa.me/5561981223083?text=Ol%C3%A1%2C%20Lurdes!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20pacotes%20de%20recrutamento%20e%20sele%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>A pessoa certa, na vaga certa, sem meses de busca.</h1>
+      <p class="lede">Recrutamento e seleção conduzido de perto, em Brasília e região — para empresas que precisam contratar bem e para profissionais que querem a próxima oportunidade real.</p>
+      <div class="actions">
+        <a class="btn" href="#pacotes">Ver pacotes</a>
+        <a class="btn-ghost" href="https://wa.me/5561981223083?text=Ol%C3%A1%2C%20Lurdes!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20pacotes%20de%20recrutamento%20e%20sele%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="num">12 dias</div>
+      <div class="label">tempo médio entre abertura da vaga e apresentação da terna de candidatos</div>
+    </div>
+  </div>
+</section>
+
+<section class="split">
+  <div class="wrap split-grid">
+    <div class="split-col" id="empresas">
+      <h2>Para empresas</h2>
+      <p>Mapeamento de candidatos, triagem por competência e entrevista estruturada — você recebe só quem realmente atende ao perfil da vaga.</p>
+      <ul>
+        <li>Definição de perfil e escopo da vaga</li>
+        <li>Mapeamento e abordagem ativa de candidatos</li>
+        <li>Entrevistas e validação de referências</li>
+        <li>Acompanhamento até a contratação</li>
+      </ul>
+      <a class="btn-ghost" href="#contato">Solicitar uma vaga</a>
+    </div>
+    <div class="split-col" id="profissionais">
+      <h2>Para profissionais</h2>
+      <p>Um cadastro simples e uma conversa direta sobre onde você quer chegar — sem enviar currículo para o vazio.</p>
+      <ul>
+        <li>Cadastro de currículo e área de interesse</li>
+        <li>Retorno sobre vagas compatíveis</li>
+        <li>Preparação para entrevistas</li>
+        <li>Feedback em todas as etapas</li>
+      </ul>
+      <a class="btn-ghost" href="#contato">Cadastrar currículo</a>
+    </div>
+  </div>
+</section>
+
+<section class="about wrap" id="sobre">
+  <h2>Sobre</h2>
+  <div>
+    <p>Profissional formada em RH, com experiência sólida em recrutamento e seleção, pós-graduanda em Psicologia Organizacional e Saúde Mental no Trabalho.</p>
+    <p>Meu trabalho é apoiar empresas na identificação e seleção de profissionais alinhados às necessidades da organização e ao perfil de cada oportunidade.</p>
+  </div>
+</section>
+
+<section class="pacotes-intro wrap" id="pacotes">
+  <h2>Pacotes de recrutamento e seleção</h2>
+  <p>Três formatos pensados para diferentes momentos de contratação — de uma vaga pontual a um processo contínuo de várias posições ao longo do ano.</p>
+</section>
+
+<section class="plans wrap">
+  <div class="plan">
+    <div class="tag">Vaga avulsa</div>
+    <h3>Pontual</h3>
+    <div class="preco">20% <small>do salário anual da posição, por vaga fechada</small></div>
+    <p class="desc">Ideal para uma contratação isolada, sem compromisso recorrente.</p>
+    <ul>
+      <li>1 vaga por vez</li>
+      <li>Terna de candidatos qualificados</li>
+      <li>Entrevistas e checagem de referências</li>
+      <li>Garantia de 90 dias</li>
+    </ul>
+    <a class="btn-ghost" href="https://wa.me/5561981223083?text=Ol%C3%A1%2C%20Lurdes!%20Tenho%20interesse%20no%20pacote%20Pontual." target="_blank" rel="noopener">Contratar este pacote</a>
+  </div>
+
+  <div class="plan destaque">
+    <div class="tag">Mais procurado</div>
+    <h3>Recorrente</h3>
+    <div class="preco">R$ 2.400<small>/mês + 12% por vaga fechada, até 4 vagas simultâneas</small></div>
+    <p class="desc">Para empresas com contratações frequentes ao longo do ano.</p>
+    <ul>
+      <li>Até 4 vagas simultâneas</li>
+      <li>Prioridade na fila de atendimento</li>
+      <li>Banco de talentos dedicado à empresa</li>
+      <li>Garantia de 120 dias</li>
+    </ul>
+    <a class="btn-ghost" href="https://wa.me/5561981223083?text=Ol%C3%A1%2C%20Lurdes!%20Tenho%20interesse%20no%20pacote%20Recorrente." target="_blank" rel="noopener">Contratar este pacote</a>
+  </div>
+
+  <div class="plan">
+    <div class="tag">Alta liderança</div>
+    <h3>Dedicado</h3>
+    <div class="preco">Sob consulta<small>retainer + êxito, para posições de liderança e cargos críticos</small></div>
+    <p class="desc">Busca exclusiva e confidencial para posições estratégicas.</p>
+    <ul>
+      <li>Dedicação exclusiva à vaga</li>
+      <li>Mapeamento ativo de mercado</li>
+      <li>Processo confidencial</li>
+      <li>Garantia de 180 dias</li>
+    </ul>
+    <a class="btn-ghost" href="https://wa.me/5561981223083?text=Ol%C3%A1%2C%20Lurdes!%20Tenho%20interesse%20no%20pacote%20Dedicado." target="_blank" rel="noopener">Solicitar proposta</a>
+  </div>
+</section>
+
+<section class="nota-pacotes wrap">
+  <p>Valores de referência — ajustados conforme senioridade da vaga, volume de contratações e prazo desejado. Proposta fechada após uma conversa inicial sem custo.</p>
+</section>
+
+<section class="comparativo wrap">
+  <h3>Comparativo rápido</h3>
+  <table>
+    <thead>
+      <tr><th>Recurso</th><th>Pontual</th><th>Recorrente</th><th>Dedicado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Vagas simultâneas</td><td>1</td><td>Até 4</td><td>1 (exclusiva)</td></tr>
+      <tr><td>Banco de talentos próprio</td><td>—</td><td class="check">Incluído</td><td class="check">Incluído</td></tr>
+      <tr><td>Garantia de reposição</td><td>90 dias</td><td>120 dias</td><td>180 dias</td></tr>
+      <tr><td>Processo confidencial</td><td>—</td><td>—</td><td class="check">Incluído</td></tr>
+      <tr><td>Prioridade de atendimento</td><td>—</td><td class="check">Incluído</td><td class="check">Incluído</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer id="contato">
+  <div class="wrap footer-grid">
+    <div>Lurdes Tiele Recrutamento e Seleção — Brasília, DF</div>
+    <div>(61) 90000-0000 · contato@lurdestiele.com.br</div>
+  </div>
+</footer>
+
+</body>
+</html>
